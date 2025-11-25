@@ -1,0 +1,14 @@
+{
+  "name": "code-resume",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "bun --workspaces run dev",
+    "build": "bun --workspaces run build",
+    "start": "bun --cwd web run start"
+  },
+  "workspaces": [
+    "web",
+    "server"
+  ]
+}
