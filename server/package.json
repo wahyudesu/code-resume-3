@@ -1,15 +1,40 @@
 {
-  "name": "server",
-  "type": "module",
+  "name": "honc-app",
   "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy --minify",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    "dev": "wrangler dev src/index.ts",
+    "deploy": "wrangler deploy --minify src/index.ts",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:migrate:prod": "ENVIRONMENT=production drizzle-kit migrate",
+    "db:seed": "tsx seed.ts",
+    "db:seed:prod": "ENVIRONMENT=production tsx seed.ts",
+    "db:setup": "npm run db:generate && npm run db:migrate && npm run db:seed",
+    "db:studio": "drizzle-kit studio",
+    "format": "biome format --write src",
+    "lint": "biome check --write src",
+    "test": "vitest"
   },
   "dependencies": {
-    "hono": "^4.10.6"
+    "@fiberplane/hono": "0.5.2",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.43.1",
+    "drizzle-zod": "^0.7.1",
+    "hono": "^4.7.0",
+    "hono-openapi": "^0.4.6",
+    "postgres": "^3.4.5",
+    "zod": "^3.23.8",
+    "zod-openapi": "^4.2.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@cloudflare/vitest-pool-workers": "^0.8.31",
+    "@cloudflare/workers-types": "^4.20250508.0",
+    "@types/node": "^22.15.18",
+    "drizzle-kit": "^0.31.1",
+    "drizzle-seed": "^0.3.1",
+    "tsx": "^4.19.2",
+    "vitest": "^3.1.4",
     "wrangler": "^4.4.0"
   }
 }
