@@ -20,102 +20,97 @@ export default function Footer() {
 
 	return (
 		<footer className="bg-background border-t border-border">
-			<div className="container mx-auto px-6 py-12 max-w-7xl">
+			<div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 max-w-7xl">
 				{/* Links Grid */}
-				   <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-					   {/* Social & Logo (Left, wider) */}
-					   <div className="md:col-span-1 flex flex-col justify-between min-h-[140px] pr-8">
-						   <div>
-							   <h2 className="text-foreground font-semibold mb-4 text-xl"># Build Standout CV</h2>
-							   {/* <Link href="/" className="flex items-center gap-2 mb-4">
-								   <div className="w-6 h-6 bg-linear-to-br from-primary to-primary/80 rounded flex items-center justify-center text-primary-foreground font-bold text-xs">
-									   CR
-								   </div>
-								   <span className="text-foreground font-bold">Code Resume</span>
-							   </Link> */}
-							   <p className="text-muted-foreground text-sm mb-4">
-								   Discover and explore CV builder made by the community.
-							   </p>
-						   </div>
-						   <div>
-							   <h3 className="text-foreground font-semibold mb-4 text-sm">Follow</h3>
-							   <ul className="space-y-1">
-								   <li>
-									   <a
-										   href="https://twitter.com"
-										   target="_blank"
-										   rel="noopener noreferrer"
-										   className="text-muted-foreground hover:text-primary transition text-sm"
-									   >
-										   Twitter threads.com/wahyuikbal_m
-									   </a>
-								   </li>
-								   <li>
-									   <a
-										   href="https://github.com"
-										   target="_blank"
-										   rel="noopener noreferrer"
-										   className="text-muted-foreground hover:text-primary transition text-sm"
-									   >
-										   GitHub github.com/wahyudesu
-									   </a>
-								   </li>
-								   <li>
-									   <a
-										   href="mailto:support@coderesume.com"
-										   className="text-muted-foreground hover:text-primary transition text-sm"
-									   >
-										   Linkedin linkedin.com/in/wahyuikbalmaulana
-									   </a>
-								   </li>
-							   </ul>
-						   </div>
-					   </div>
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
+					{/* Social & Logo (Left) */}
+					<div className="flex flex-col justify-between">
+						<div>
+							<h2 className="text-foreground font-semibold mb-3 sm:mb-4 text-lg sm:text-xl"># Build Standout CV</h2>
+							<p className="text-muted-foreground text-xs sm:text-sm mb-4">
+								Discover and explore CV builder made by the community.
+							</p>
+						</div>
+						<div>
+							<h3 className="text-foreground font-semibold mb-3 sm:mb-4 text-xs sm:text-sm">Follow</h3>
+							<ul className="space-y-1.5 sm:space-y-2">
+								<li>
+									<a
+										href="https://twitter.com"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-muted-foreground hover:text-primary transition text-xs sm:text-sm line-clamp-1"
+										title="Twitter"
+									>
+										Twitter threads.com/wahyuikbal_m
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://github.com"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-muted-foreground hover:text-primary transition text-xs sm:text-sm line-clamp-1"
+										title="GitHub"
+									>
+										GitHub github.com/wahyudesu
+									</a>
+								</li>
+								<li>
+									<a
+										href="mailto:support@coderesume.com"
+										className="text-muted-foreground hover:text-primary transition text-xs sm:text-sm line-clamp-1"
+										title="LinkedIn"
+									>
+										Linkedin linkedin.com/in/wahyuikbalmaulana
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
 
-					   {/* Resources (center right) */}
-					   <div className="md:col-span-1 flex flex-col items-start">
-						   <h3 className="text-foreground font-semibold mb-4 text-sm">Resources</h3>
-						   <ul className="space-y-2 text-left">
-							   {footerLinks.resources.map((link) => (
-								   <li key={link.label}>
-									   <Link
-											   href={link.href}
-										   className="text-muted-foreground hover:text-primary transition text-sm"
-									   >
-										   {link.label}
-									   </Link>
-								   </li>
-							   ))}
-						   </ul>
-					   </div>
+					{/* Resources */}
+					<div className="flex flex-col items-start">
+						<h3 className="text-foreground font-semibold mb-3 sm:mb-4 text-xs sm:text-sm">Resources</h3>
+						<ul className="space-y-1.5 sm:space-y-2 text-left w-full">
+							{footerLinks.resources.map((link) => (
+								<li key={link.label}>
+									<Link
+										href={link.href}
+										className="text-muted-foreground hover:text-primary transition text-xs sm:text-sm line-clamp-1"
+									>
+										{link.label}
+									</Link>
+								</li>
+							))}
+						</ul>
+					</div>
 
-					   {/* Legal (far right) */}
-					   <div className="md:col-span-1 flex flex-col items-start">
-						   <h3 className="text-foreground font-semibold mb-4 text-sm">Legal</h3>
-						   <ul className="space-y-2 text-left">
-							   {footerLinks.legal.map((link) => (
-								   <li key={link.label}>
-									   <Link
-										   href={link.href}
-										   className="text-muted-foreground hover:text-primary transition text-sm"
-									   >
-										   {link.label}
-									   </Link>
-								   </li>
-							   ))}
-						   </ul>
-					   </div>
-
-					   {/* Social moved to left column above */}
+					{/* Legal */}
+					<div className="flex flex-col items-start sm:col-span-2 lg:col-span-1">
+						<h3 className="text-foreground font-semibold mb-3 sm:mb-4 text-xs sm:text-sm">Legal</h3>
+						<ul className="space-y-1.5 sm:space-y-2 text-left w-full grid grid-cols-2 sm:grid-cols-1 lg:grid-cols-1 gap-x-4 sm:gap-x-0">
+							{footerLinks.legal.map((link) => (
+								<li key={link.label}>
+									<Link
+										href={link.href}
+										className="text-muted-foreground hover:text-primary transition text-xs sm:text-sm line-clamp-1"
+									>
+										{link.label}
+									</Link>
+								</li>
+							))}
+						</ul>
+					</div>
 				</div>
 
 				{/* Divider */}
-				<div className="border-t border-border mb-6" />
+				<div className="border-t border-border mb-6 sm:mb-8" />
 
 				{/* Bottom */}
-				<div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
+				<div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs sm:text-sm text-muted-foreground text-center sm:text-left">
 					<p>© {currentYear} Code Resume. Not affiliated with Anthropic.</p>
-					<p className="mt-4 md:mt-0">Made with ❤️ by the community</p>
+					<p>Made with ❤️ by the community</p>
 				</div>
 			</div>
 		</footer>
