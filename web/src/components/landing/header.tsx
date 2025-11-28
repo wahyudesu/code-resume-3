@@ -3,13 +3,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "../mode-toggle";
-import { ArrowRight, Shuffle } from "lucide-react";
-import { useBackground } from "@/contexts/BackgroundContext";
+import { ArrowRight } from "lucide-react";
 
 export default function Header() {
 	const pathname = usePathname();
 	const isDashboard = pathname?.startsWith("/dashboard");
-	const { toggleBackground } = useBackground();
 
 	// Hide header on dashboard pages
 	if (isDashboard) {
@@ -17,9 +15,9 @@ export default function Header() {
 	}
 
 	const links = [
-		{ to: "/landing/template", label: "Templates" },
-		{ to: "/landing/resources", label: "Resources" },
-		{ to: "/landing/stats", label: "Stats" },
+		{ to: "/community", label: "Templates" },
+		{ to: "/resources", label: "Resources" },
+		{ to: "/stats", label: "Stats" },
 	];
 
 	return (
@@ -49,15 +47,7 @@ export default function Header() {
 					</nav>
 					{/* <div className="h-6 w-px bg-border hidden sm:block" /> */}
 					<div className="flex items-center gap-2 sm:gap-3">
-						<Button
-							variant="ghost"
-							size="sm"
-							onClick={toggleBackground}
-							title="Toggle background effect"
-							className="text-xs sm:text-sm"
-						>
-							<Shuffle className="w-3 h-3 sm:w-4 sm:h-4" />
-						</Button>
+						<ModeToggle />
 						<ModeToggle />
 						<Link href="/dashboard">
 							<Button

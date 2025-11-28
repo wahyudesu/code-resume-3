@@ -88,22 +88,29 @@ export default function ResumeEditorPage({ params }: { params: any }) {
 			</div>
 
 			{/* Content Area */}
-			<div className="flex-1 overflow-hidden flex flex-col sm:flex-row">
-				{showPreview ? (
-					<div className="flex-1 overflow-auto">
-						<ResumePreview data={resumeData} />
+					<div className="flex-1 overflow-hidden flex flex-col sm:flex-row gap-4">
+						{/* Left editor column: collapses on small screens when preview is on */}
+						<div className={`${showPreview ? "hidden" : "block"} sm:block w-full sm:w-[420px] overflow-auto` }>
+							<div className="p-4 sm:p-6">
+								<div className="rounded-lg border border-border bg-card p-4 sm:p-6">
+									<h2 className="text-lg font-semibold mb-2">Basics</h2>
+									<ResumeSections
+										data={resumeData}
+										onChange={(d: ResumeData) =>
+											setResumeData((prev) => ({ ...prev, ...(d as Partial<ResumeState>) }))
+										}
+									/>
+								</div>
+							</div>
+						</div>
+
+						{/* Right preview column: hidden on small screens when not previewing */}
+						<div className={`${!showPreview ? "hidden" : "block"} sm:block flex-1 overflow-auto p-4 sm:p-6` }>
+							<div className="rounded-lg border border-border bg-card p-4 sm:p-6">
+								<ResumePreview data={resumeData} />
+							</div>
+						</div>
 					</div>
-				) : (
-					<div className="flex-1 overflow-auto">
-						<ResumeSections
-							data={resumeData}
-							onChange={(d: ResumeData) =>
-								setResumeData((prev) => ({ ...prev, ...(d as Partial<ResumeState>) }))
-							}
-						/>
-					</div>
-				)}
-			</div>
 		</div>
 	);
 }

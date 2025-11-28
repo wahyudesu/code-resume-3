@@ -1,56 +1,12 @@
-"use client";
-
 import { MoveRight, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Card } from "../ui/card";
-import dynamic from "next/dynamic";
-import { useBackground } from "@/contexts/BackgroundContext";
 
-const PixelBlast = dynamic(
-  () =>
-    import("@/components/pixel-blast").then((mod) => ({
-      default: mod.PixelBlast,
-    })),
-  {
-    ssr: false,
-    loading: () => <div className="sr-only" />,
-  }
-);
-
-const LetterGlitch = dynamic(
-  () => import("@/components/LetterGlitch"),
-  {
-    ssr: false,
-    loading: () => <div className="sr-only" />,
-  }
-);
-
-export const Hero = () => {
-  const { backgroundType } = useBackground();
-
-  return (
-  <div className="relative w-full py-12 sm:py-10 lg:py-20 bg-background overflow-hidden">
-    {/* Dynamic Background */}
-    {backgroundType === "pixel-blast" && (
-      <PixelBlast
-        color="var(--primary)"
-        transparent={true}
-      />
-    )}
-    {backgroundType === "letter-glitch" && (
-      <LetterGlitch
-        glitchColors={["#2b4539", "#61dca3", "#61b3dc"]}
-        glitchSpeed={50}
-        smooth={true}
-        outerVignette={true}
-        centerVignette={false}
-        className="absolute inset-0 z-0"
-      />
-    )}
-
-    <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl lg:max-w-5xl xl:max-w-6xl">
+export const Hero = () => (
+  <div className="w-full py-12 sm:py-10 lg:py-20 bg-background">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl lg:max-w-5xl xl:max-w-6xl">
       <div className="grid grid-cols-1 gap-8 sm:gap-12 items-center lg:grid-cols-2">
         {/* Left Column - Text Content */}
         <div className="flex gap-8 flex-col">
@@ -90,5 +46,4 @@ export const Hero = () => {
       </div>
     </div>
   </div>
-  );
-};
+);

@@ -9,6 +9,8 @@ import { CreateResumeDialog } from "@/components/dashboard/create-resume-dialog"
 export default function DashboardPage() {
 	const [dialogOpen, setDialogOpen] = useState(false);
 
+	const cvLimit = 5;
+
 	// TODO: Fetch resumes from API
 	const resumes = [
 		{
@@ -67,6 +69,9 @@ export default function DashboardPage() {
 								<h2 className="text-base sm:text-lg font-semibold text-foreground mb-4 sm:mb-6">
 									CV Saya ({resumes.length})
 								</h2>
+								<p className="text-xs sm:text-sm text-muted-foreground mb-2">
+									Limit CV yang telah dibuat: {resumes.length}/{cvLimit}
+								</p>
 								<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
 									{resumes.map((resume) => (
 										<div
@@ -82,12 +87,12 @@ export default function DashboardPage() {
 														{resume.template}
 													</span>
 												</div>
-												<FileText className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+												<FileText className="w-5 h-5 text-muted-foreground shrink-0" />
 											</div>
 
 											<div className="space-y-1 sm:space-y-2 mb-6 text-xs sm:text-sm text-muted-foreground flex-1">
 												<div className="flex items-center gap-2">
-													<Clock className="w-4 h-4 flex-shrink-0" />
+													<Clock className="w-4 h-4 shrink-0" />
 													<span className="line-clamp-1">Diubah {formatDate(resume.lastModified)}</span>
 												</div>
 												<div>
@@ -105,44 +110,30 @@ export default function DashboardPage() {
 														className="w-full text-xs sm:text-sm"
 														variant="default"
 													>
-														<Edit2 className="w-4 h-4 sm:mr-2 flex-shrink-0" />
+														<Edit2 className="w-4 h-4 sm:mr-2 shrink-0" />
 														<span className="hidden sm:inline">Edit</span>
 													</Button>
 												</Link>
-												<Button
-													size="sm"
-													variant="outline"
-													className="flex-1 text-xs sm:text-sm"
-												>
-													Preview
-												</Button>
+												{/* Removed Preview button per request */}
 												<Button
 													size="sm"
 													variant="ghost"
-													className="text-destructive hover:text-destructive hover:bg-destructive/10 flex-shrink-0"
+													className="text-destructive hover:text-destructive hover:bg-destructive/10 shrink-0"
 												>
 													<Trash2 className="w-4 h-4" />
 												</Button>
 											</div>
 										</div>
 									))}
+									{/* Add new resume as a card in the same grid */}
+									<div className="group rounded-lg border border-border bg-card p-4 sm:p-6 hover:border-primary/50 hover:shadow-lg transition-all flex flex-col h-full">
+										<button onClick={() => setDialogOpen(true)} className="flex-1 flex flex-col items-center justify-center gap-2">
+											<Plus className="w-10 sm:w-12 h-10 sm:h-12 text-muted-foreground group-hover:text-primary" />
+											<p className="font-semibold text-foreground text-sm sm:text-base mt-2">Tambah CV Baru</p>
+											<p className="text-xs sm:text-sm text-muted-foreground mt-1">Buat CV baru dari awal atau impor</p>
+										</button>
+									</div>
 								</div>
-							</div>
-
-							{/* Add New Resume Card */}
-							<div>
-								<button
-									onClick={() => setDialogOpen(true)}
-									className="w-full rounded-lg border-2 border-dashed border-border bg-card/30 p-6 sm:p-8 text-center hover:border-primary/50 hover:bg-primary/5 transition group"
-								>
-									<Plus className="w-10 sm:w-12 h-10 sm:h-12 text-muted-foreground group-hover:text-primary mx-auto mb-2 sm:mb-3" />
-									<p className="font-semibold text-foreground text-sm sm:text-base">
-										Tambah CV Baru
-									</p>
-									<p className="text-xs sm:text-sm text-muted-foreground mt-1">
-										Buat CV baru dari awal atau impor dari LinkedIn
-									</p>
-								</button>
 							</div>
 						</div>
 					) : (
